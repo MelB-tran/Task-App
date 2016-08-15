@@ -1,0 +1,19 @@
+﻿body {
+}
+.jumbotron {
+    padding-bottom:5px;
+}
+.task-menu{
+    padding-top:2%;
+    border-top:2px #c5c5c5 solid;
+}
+.task{
+    margin:1%;
+    padding-bottom:2%;
+    border-bottom:solid 1px #d5d5d5;
+}
+
+.doneTask {
+    text-decoration:line-through;
+    color:#808080;
+}

@@ -77,7 +77,8 @@
                 <div class="col-md-2"><b>Due:</b><span data-bind="text: moment(Due()).format('l')"></span></div>
                 <div class="col-md-6"><a href="#" data-bind="click: $root.setEditMode">
                     <h4 data-bind="text: Title, css: IsDone() ? 'doneTask' : ''"></h4></a>
-                    <small><span data-bind="text: Description"></span></small></div>
+                    <small><span data-bind="text: Description"></span></small>
+                </div>
             </div>
             </div>
         </script>

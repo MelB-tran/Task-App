@@ -43,7 +43,7 @@ namespace WebApplication1.services
            
         }
 
-        public List<Task> GenerateTasks()
+        private List<Task> GenerateTasks()
         {
             var task1 = new Task
             {
@@ -73,6 +73,12 @@ namespace WebApplication1.services
                 DueDate = new DateTime(2016, 4, 30)
             };
             return new List<Task> { task1, task2, task3 };
+        }
+
+        private string SerializeListOfStuff(List<Task> tasksToSerialize)
+        {
+            // need newtonsoft method here
+            return string.Empty;
         }
     }
 }

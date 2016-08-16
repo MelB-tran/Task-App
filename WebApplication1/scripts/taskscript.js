@@ -19,17 +19,19 @@
 function TaskViewModel(tasksData) {
     var self = this;
     self.tasks = ko.observableArray(tasksData);
+
     self.filters = ko.observableArray(['Done', 'Not Done', 'Current', 'Overdue']);
     self.pickedFilter = ko.observable();
+    self.searchTerm = ko.observable('');
     self.alerts = ko.observableArray();
 
     self.newTaskTitle = ko.observable();
     self.newDueDate = ko.observable();
 
     self.newTaskAdd = ko.observable(false);
-
     self.toggleAdd = function () {
         self.newTaskAdd(!self.newTaskAdd());
+        
     }
 
     self.displayMode = function(task) {
@@ -40,25 +42,36 @@ function TaskViewModel(tasksData) {
         task.InEdit(true);
     };
 
-    self.filteredTasks = ko.computed(function() {
+    self.filteredTasks = ko.computed(function () {
+        var tasksToFilter = ko.observableArray();
+        if(self.searchTerm() !== ''){
+            tasksToFilter(ko.utils.arrayFilter(self.tasks(), function (task) {
+                return task.Title().toLowerCase().includes(self.searchTerm().toLowerCase()) ||
+                    task.Description().toLowerCase().includes(self.searchTerm().toLowerCase());
+            }));
+        } else {
+            tasksToFilter(ko.utils.arrayFilter(self.tasks(), function (task) {
+                return true;
+            }));
+        }
         if(self.pickedFilter() === 'Done'){
-            return ko.utils.arrayFilter(self.tasks(), function (task) {
+             return ko.utils.arrayFilter(tasksToFilter(), function (task) {
                 return task.IsDone();
             });
         } else if (self.pickedFilter() === 'Not Done') {
-            return ko.utils.arrayFilter(self.tasks(), function (task) {
+            return ko.utils.arrayFilter(tasksToFilter(), function (task) {
                 return !task.IsDone();
             });
         } else if (self.pickedFilter() === 'Current') {
-            return ko.utils.arrayFilter(self.tasks(), function (task) {
+            return ko.utils.arrayFilter(tasksToFilter(), function (task) {
                 return task.Due() >= new Date();
             });
         } else if(self.pickedFilter() === 'Overdue') {
-            return ko.utils.arrayFilter(self.tasks(), function (task) {
+            return ko.utils.arrayFilter(tasksToFilter(), function (task) {
                 return !task.IsDone() && task.Due() < new Date();
             });
         } else {
-            return ko.utils.arrayFilter(self.tasks(), function (task) {
+            return ko.utils.arrayFilter(tasksToFilter(), function (task) {
                 return true;
             });
         }

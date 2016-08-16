@@ -30,14 +30,11 @@
             </div>
              <div class="col-md-4">
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search for..." />
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
-                  </span>
+                  <input type="text" class="form-control" data-bind="value: searchTerm" placeholder="Search for..." />
                 </div><!-- /input-group -->
               </div><!-- /.col-md-4 -->
             <div class="col-md-3">
-                  <button class="btn btn-default" data-bind="click: toggleAdd">Add New Task</button>
+                  <button class="btn btn-default" data-bind="click: toggleAdd, text: newTaskAdd() ? 'Cancel' : 'Add Task'"></button>
             </div>
         </div>
         </div>

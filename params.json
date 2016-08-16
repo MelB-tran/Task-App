@@ -1,0 +1,6 @@
+{
+  "name": "Task-app",
+  "tagline": "simple task web app",
+  "body": "### Welcome to Task App.\r\nThis is a simple task web app to track personal tasks. Still early in its development stages\r\nCurrently you can:\r\n* Add tasks and edit Due Page, Title, and Description\r\n* Mark tasks as done\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
